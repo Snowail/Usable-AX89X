@@ -1,0 +1,25 @@
+#!/bin/sh
+
+########## SET THE CUSTOM VARIABLES ##########
+# 设置程序安装目录
+MAIN_DIR="/opt/usr/share/AdGuardHome"
+#
+# 设置自定义变量DNS_PORT为ADGUARD-HOME的DNS服务监听端口
+DNS_PORT="5053"
+########## END ##########
+#
+#
+# 检查文件是否存在
+if [ -e "${MAIN_DIR}/AdGuardHome" ] && \
+[ -e "${MAIN_DIR}/AdGuardHome.yaml" ]
+then
+  /opt/bin/nohup "${MAIN_DIR}/AdGuardHome" --work-dir "${MAIN_DIR}"&> /dev/null &
+  #
+  # 更新DNS服务器
+  echo -e "server=127.0.0.1#${DNS_PORT}" > "/tmp/resolv.dnsmasq"
+  echo -e "server=::1#${DNS_PORT}" >> "/tmp/resolv.dnsmasq"
+  service restart_dnsmasq
+  exit 0
+else
+  echo AdGuardHome Start failed!
+  exit 1
