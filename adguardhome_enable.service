@@ -13,7 +13,7 @@ DNS_PORT="5053"
 if [ -e "${MAIN_DIR}/AdGuardHome" ] && \
 [ -e "${MAIN_DIR}/AdGuardHome.yaml" ]
 then
-  /opt/bin/nohup "${MAIN_DIR}/AdGuardHome" --work-dir "${MAIN_DIR}"&> /dev/null &
+  nohup "${MAIN_DIR}/AdGuardHome" --work-dir "${MAIN_DIR}"&> /dev/null &
   #
   # 更新DNS服务器
   echo -e "server=127.0.0.1#${DNS_PORT}" > "/tmp/resolv.dnsmasq"
