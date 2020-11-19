@@ -6,7 +6,7 @@
 MAIN_DIR="/opt/usr/share"
 #
 # 设置自定义变量LATEST_VERSION为最新版adguardhome的版本号
-LATEST_VERSION="$(/opt/bin/curl -s "https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest" | /opt/bin/sed -E -n -e 's/^[[:space:]]*\"tag_name\":[[:space:]]*\"(.*)\".*/\1/p')"
+LATEST_VERSION="$(curl -s "https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest" | sed -E -n -e 's/^[[:space:]]*\"tag_name\":[[:space:]]*\"(.*)\".*/\1/p')"
 #
 # 设置自定义变量DOWNLOAD_LINK为最新版adguardhome的下载链接
 DOWNLOAD_LINK="https://github.com/AdguardTeam/AdGuardHome/releases/download/${LATEST_VERSION}/AdGuardHome_linux_armv5.tar.gz"
